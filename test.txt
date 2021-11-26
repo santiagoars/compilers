@@ -1,0 +1,19 @@
+
+int i = 10;
+int j;
+z = 4 ^ 2 + 2;
+z = 12 + 3 ^ 2;
+float f = 5.6;
+boolean b = true;
+string str = "hi there";
+if(i == 10){
+    print x;
+} elif (i == 11) {
+    print "2";
+} else {
+    print "hello";
+}
+int x = 1;
+while(x < 10){
+    print "hi";
+}
