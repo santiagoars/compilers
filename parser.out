@@ -1,0 +1,2801 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> prog
+Rule 1     prog -> statement
+Rule 2     statement -> conditional statement
+Rule 3     statement -> while statement
+Rule 4     statement -> declare ; statement
+Rule 5     statement -> print ; statement
+Rule 6     statement -> none
+Rule 7     none -> <empty>
+Rule 8     conditional -> if elif else
+Rule 9     if -> IF ( expression ) { statement }
+Rule 10    elif -> ELIF ( expression ) { statement } elif
+Rule 11    elif -> none
+Rule 12    else -> ELSE { statement }
+Rule 13    else -> none
+Rule 14    while -> WHILE ( expression ) { statement }
+Rule 15    type -> INT
+Rule 16    type -> FLOAT
+Rule 17    type -> STRING
+Rule 18    type -> BOOLEAN
+Rule 19    declare -> declaration
+Rule 20    declare -> declarationAssign
+Rule 21    declare -> declareAssign
+Rule 22    declaration -> type ID
+Rule 23    declarationAssign -> type ID = expression
+Rule 24    declareAssign -> ID = expression
+Rule 25    print -> PRINT expression
+Rule 26    expression -> expression + expression
+Rule 27    expression -> expression - expression
+Rule 28    expression -> expression * expression
+Rule 29    expression -> expression / expression
+Rule 30    expression -> expression ^ expression
+Rule 31    expression -> expression > expression
+Rule 32    expression -> expression < expression
+Rule 33    expression -> expression AND expression
+Rule 34    expression -> expression OR expression
+Rule 35    expression -> expression EQC expression
+Rule 36    expression -> expression NOTEQC expression
+Rule 37    expression -> expression BIGGEREQ expression
+Rule 38    expression -> expression SMALLEREQ expression
+Rule 39    expression -> - expression
+Rule 40    expression -> ( expression )
+Rule 41    expression -> INTV
+Rule 42    expression -> FLOATV
+Rule 43    expression -> STRINGV
+Rule 44    expression -> boolval
+Rule 45    boolval -> TRUE
+Rule 46    boolval -> FALSE
+Rule 47    expression -> ID
+
+Terminals, with rules where they appear
+
+(                    : 9 10 14 40
+)                    : 9 10 14 40
+*                    : 28
++                    : 26
+-                    : 27 39
+/                    : 29
+;                    : 4 5
+<                    : 32
+=                    : 23 24
+>                    : 31
+AND                  : 33
+BIGGEREQ             : 37
+BOOLEAN              : 18
+ELIF                 : 10
+ELSE                 : 12
+EQC                  : 35
+FALSE                : 46
+FLOAT                : 16
+FLOATV               : 42
+ID                   : 22 23 24 47
+IF                   : 9
+INT                  : 15
+INTV                 : 41
+NOTEQC               : 36
+OR                   : 34
+PRINT                : 25
+SMALLEREQ            : 38
+STRING               : 17
+STRINGV              : 43
+TRUE                 : 45
+WHILE                : 14
+^                    : 30
+error                : 
+{                    : 9 10 12 14
+}                    : 9 10 12 14
+
+Nonterminals, with rules where they appear
+
+boolval              : 44
+conditional          : 2
+declaration          : 19
+declarationAssign    : 20
+declare              : 4
+declareAssign        : 21
+elif                 : 8 10
+else                 : 8
+expression           : 9 10 14 23 24 25 26 26 27 27 28 28 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 38 39 40
+if                   : 8
+none                 : 6 11 13
+print                : 5
+prog                 : 0
+statement            : 1 2 3 4 5 9 10 12 14
+type                 : 22 23
+while                : 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . prog
+    (1) prog -> . statement
+    (2) statement -> . conditional statement
+    (3) statement -> . while statement
+    (4) statement -> . declare ; statement
+    (5) statement -> . print ; statement
+    (6) statement -> . none
+    (8) conditional -> . if elif else
+    (14) while -> . WHILE ( expression ) { statement }
+    (19) declare -> . declaration
+    (20) declare -> . declarationAssign
+    (21) declare -> . declareAssign
+    (25) print -> . PRINT expression
+    (7) none -> .
+    (9) if -> . IF ( expression ) { statement }
+    (22) declaration -> . type ID
+    (23) declarationAssign -> . type ID = expression
+    (24) declareAssign -> . ID = expression
+    (15) type -> . INT
+    (16) type -> . FLOAT
+    (17) type -> . STRING
+    (18) type -> . BOOLEAN
+
+    WHILE           shift and go to state 9
+    PRINT           shift and go to state 13
+    $end            reduce using rule 7 (none -> .)
+    IF              shift and go to state 14
+    ID              shift and go to state 16
+    INT             shift and go to state 17
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    BOOLEAN         shift and go to state 20
+
+    prog                           shift and go to state 1
+    statement                      shift and go to state 2
+    conditional                    shift and go to state 3
+    while                          shift and go to state 4
+    declare                        shift and go to state 5
+    print                          shift and go to state 6
+    none                           shift and go to state 7
+    if                             shift and go to state 8
+    declaration                    shift and go to state 10
+    declarationAssign              shift and go to state 11
+    declareAssign                  shift and go to state 12
+    type                           shift and go to state 15
+
+state 1
+
+    (0) S' -> prog .
+
+
+
+state 2
+
+    (1) prog -> statement .
+
+    $end            reduce using rule 1 (prog -> statement .)
+
+
+state 3
+
+    (2) statement -> conditional . statement
+    (2) statement -> . conditional statement
+    (3) statement -> . while statement
+    (4) statement -> . declare ; statement
+    (5) statement -> . print ; statement
+    (6) statement -> . none
+    (8) conditional -> . if elif else
+    (14) while -> . WHILE ( expression ) { statement }
+    (19) declare -> . declaration
+    (20) declare -> . declarationAssign
+    (21) declare -> . declareAssign
+    (25) print -> . PRINT expression
+    (7) none -> .
+    (9) if -> . IF ( expression ) { statement }
+    (22) declaration -> . type ID
+    (23) declarationAssign -> . type ID = expression
+    (24) declareAssign -> . ID = expression
+    (15) type -> . INT
+    (16) type -> . FLOAT
+    (17) type -> . STRING
+    (18) type -> . BOOLEAN
+
+    WHILE           shift and go to state 9
+    PRINT           shift and go to state 13
+    $end            reduce using rule 7 (none -> .)
+    }               reduce using rule 7 (none -> .)
+    IF              shift and go to state 14
+    ID              shift and go to state 16
+    INT             shift and go to state 17
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    BOOLEAN         shift and go to state 20
+
+    conditional                    shift and go to state 3
+    statement                      shift and go to state 21
+    while                          shift and go to state 4
+    declare                        shift and go to state 5
+    print                          shift and go to state 6
+    none                           shift and go to state 7
+    if                             shift and go to state 8
+    declaration                    shift and go to state 10
+    declarationAssign              shift and go to state 11
+    declareAssign                  shift and go to state 12
+    type                           shift and go to state 15
+
+state 4
+
+    (3) statement -> while . statement
+    (2) statement -> . conditional statement
+    (3) statement -> . while statement
+    (4) statement -> . declare ; statement
+    (5) statement -> . print ; statement
+    (6) statement -> . none
+    (8) conditional -> . if elif else
+    (14) while -> . WHILE ( expression ) { statement }
+    (19) declare -> . declaration
+    (20) declare -> . declarationAssign
+    (21) declare -> . declareAssign
+    (25) print -> . PRINT expression
+    (7) none -> .
+    (9) if -> . IF ( expression ) { statement }
+    (22) declaration -> . type ID
+    (23) declarationAssign -> . type ID = expression
+    (24) declareAssign -> . ID = expression
+    (15) type -> . INT
+    (16) type -> . FLOAT
+    (17) type -> . STRING
+    (18) type -> . BOOLEAN
+
+    WHILE           shift and go to state 9
+    PRINT           shift and go to state 13
+    $end            reduce using rule 7 (none -> .)
+    }               reduce using rule 7 (none -> .)
+    IF              shift and go to state 14
+    ID              shift and go to state 16
+    INT             shift and go to state 17
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    BOOLEAN         shift and go to state 20
+
+    while                          shift and go to state 4
+    statement                      shift and go to state 22
+    conditional                    shift and go to state 3
+    declare                        shift and go to state 5
+    print                          shift and go to state 6
+    none                           shift and go to state 7
+    if                             shift and go to state 8
+    declaration                    shift and go to state 10
+    declarationAssign              shift and go to state 11
+    declareAssign                  shift and go to state 12
+    type                           shift and go to state 15
+
+state 5
+
+    (4) statement -> declare . ; statement
+
+    ;               shift and go to state 23
+
+
+state 6
+
+    (5) statement -> print . ; statement
+
+    ;               shift and go to state 24
+
+
+state 7
+
+    (6) statement -> none .
+
+    $end            reduce using rule 6 (statement -> none .)
+    }               reduce using rule 6 (statement -> none .)
+
+
+state 8
+
+    (8) conditional -> if . elif else
+    (10) elif -> . ELIF ( expression ) { statement } elif
+    (11) elif -> . none
+    (7) none -> .
+
+    ELIF            shift and go to state 26
+    ELSE            reduce using rule 7 (none -> .)
+    WHILE           reduce using rule 7 (none -> .)
+    PRINT           reduce using rule 7 (none -> .)
+    IF              reduce using rule 7 (none -> .)
+    ID              reduce using rule 7 (none -> .)
+    INT             reduce using rule 7 (none -> .)
+    FLOAT           reduce using rule 7 (none -> .)
+    STRING          reduce using rule 7 (none -> .)
+    BOOLEAN         reduce using rule 7 (none -> .)
+    $end            reduce using rule 7 (none -> .)
+    }               reduce using rule 7 (none -> .)
+
+    elif                           shift and go to state 25
+    none                           shift and go to state 27
+
+state 9
+
+    (14) while -> WHILE . ( expression ) { statement }
+
+    (               shift and go to state 28
+
+
+state 10
+
+    (19) declare -> declaration .
+
+    ;               reduce using rule 19 (declare -> declaration .)
+
+
+state 11
+
+    (20) declare -> declarationAssign .
+
+    ;               reduce using rule 20 (declare -> declarationAssign .)
+
+
+state 12
+
+    (21) declare -> declareAssign .
+
+    ;               reduce using rule 21 (declare -> declareAssign .)
+
+
+state 13
+
+    (25) print -> PRINT . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 29
+    boolval                        shift and go to state 35
+
+state 14
+
+    (9) if -> IF . ( expression ) { statement }
+
+    (               shift and go to state 39
+
+
+state 15
+
+    (22) declaration -> type . ID
+    (23) declarationAssign -> type . ID = expression
+
+    ID              shift and go to state 40
+
+
+state 16
+
+    (24) declareAssign -> ID . = expression
+
+    =               shift and go to state 41
+
+
+state 17
+
+    (15) type -> INT .
+
+    ID              reduce using rule 15 (type -> INT .)
+
+
+state 18
+
+    (16) type -> FLOAT .
+
+    ID              reduce using rule 16 (type -> FLOAT .)
+
+
+state 19
+
+    (17) type -> STRING .
+
+    ID              reduce using rule 17 (type -> STRING .)
+
+
+state 20
+
+    (18) type -> BOOLEAN .
+
+    ID              reduce using rule 18 (type -> BOOLEAN .)
+
+
+state 21
+
+    (2) statement -> conditional statement .
+
+    $end            reduce using rule 2 (statement -> conditional statement .)
+    }               reduce using rule 2 (statement -> conditional statement .)
+
+
+state 22
+
+    (3) statement -> while statement .
+
+    $end            reduce using rule 3 (statement -> while statement .)
+    }               reduce using rule 3 (statement -> while statement .)
+
+
+state 23
+
+    (4) statement -> declare ; . statement
+    (2) statement -> . conditional statement
+    (3) statement -> . while statement
+    (4) statement -> . declare ; statement
+    (5) statement -> . print ; statement
+    (6) statement -> . none
+    (8) conditional -> . if elif else
+    (14) while -> . WHILE ( expression ) { statement }
+    (19) declare -> . declaration
+    (20) declare -> . declarationAssign
+    (21) declare -> . declareAssign
+    (25) print -> . PRINT expression
+    (7) none -> .
+    (9) if -> . IF ( expression ) { statement }
+    (22) declaration -> . type ID
+    (23) declarationAssign -> . type ID = expression
+    (24) declareAssign -> . ID = expression
+    (15) type -> . INT
+    (16) type -> . FLOAT
+    (17) type -> . STRING
+    (18) type -> . BOOLEAN
+
+    WHILE           shift and go to state 9
+    PRINT           shift and go to state 13
+    $end            reduce using rule 7 (none -> .)
+    }               reduce using rule 7 (none -> .)
+    IF              shift and go to state 14
+    ID              shift and go to state 16
+    INT             shift and go to state 17
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    BOOLEAN         shift and go to state 20
+
+    declare                        shift and go to state 5
+    statement                      shift and go to state 42
+    conditional                    shift and go to state 3
+    while                          shift and go to state 4
+    print                          shift and go to state 6
+    none                           shift and go to state 7
+    if                             shift and go to state 8
+    declaration                    shift and go to state 10
+    declarationAssign              shift and go to state 11
+    declareAssign                  shift and go to state 12
+    type                           shift and go to state 15
+
+state 24
+
+    (5) statement -> print ; . statement
+    (2) statement -> . conditional statement
+    (3) statement -> . while statement
+    (4) statement -> . declare ; statement
+    (5) statement -> . print ; statement
+    (6) statement -> . none
+    (8) conditional -> . if elif else
+    (14) while -> . WHILE ( expression ) { statement }
+    (19) declare -> . declaration
+    (20) declare -> . declarationAssign
+    (21) declare -> . declareAssign
+    (25) print -> . PRINT expression
+    (7) none -> .
+    (9) if -> . IF ( expression ) { statement }
+    (22) declaration -> . type ID
+    (23) declarationAssign -> . type ID = expression
+    (24) declareAssign -> . ID = expression
+    (15) type -> . INT
+    (16) type -> . FLOAT
+    (17) type -> . STRING
+    (18) type -> . BOOLEAN
+
+    WHILE           shift and go to state 9
+    PRINT           shift and go to state 13
+    $end            reduce using rule 7 (none -> .)
+    }               reduce using rule 7 (none -> .)
+    IF              shift and go to state 14
+    ID              shift and go to state 16
+    INT             shift and go to state 17
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    BOOLEAN         shift and go to state 20
+
+    print                          shift and go to state 6
+    statement                      shift and go to state 43
+    conditional                    shift and go to state 3
+    while                          shift and go to state 4
+    declare                        shift and go to state 5
+    none                           shift and go to state 7
+    if                             shift and go to state 8
+    declaration                    shift and go to state 10
+    declarationAssign              shift and go to state 11
+    declareAssign                  shift and go to state 12
+    type                           shift and go to state 15
+
+state 25
+
+    (8) conditional -> if elif . else
+    (12) else -> . ELSE { statement }
+    (13) else -> . none
+    (7) none -> .
+
+    ELSE            shift and go to state 45
+    WHILE           reduce using rule 7 (none -> .)
+    PRINT           reduce using rule 7 (none -> .)
+    IF              reduce using rule 7 (none -> .)
+    ID              reduce using rule 7 (none -> .)
+    INT             reduce using rule 7 (none -> .)
+    FLOAT           reduce using rule 7 (none -> .)
+    STRING          reduce using rule 7 (none -> .)
+    BOOLEAN         reduce using rule 7 (none -> .)
+    $end            reduce using rule 7 (none -> .)
+    }               reduce using rule 7 (none -> .)
+
+    else                           shift and go to state 44
+    none                           shift and go to state 46
+
+state 26
+
+    (10) elif -> ELIF . ( expression ) { statement } elif
+
+    (               shift and go to state 47
+
+
+state 27
+
+    (11) elif -> none .
+
+    ELSE            reduce using rule 11 (elif -> none .)
+    WHILE           reduce using rule 11 (elif -> none .)
+    PRINT           reduce using rule 11 (elif -> none .)
+    IF              reduce using rule 11 (elif -> none .)
+    ID              reduce using rule 11 (elif -> none .)
+    INT             reduce using rule 11 (elif -> none .)
+    FLOAT           reduce using rule 11 (elif -> none .)
+    STRING          reduce using rule 11 (elif -> none .)
+    BOOLEAN         reduce using rule 11 (elif -> none .)
+    $end            reduce using rule 11 (elif -> none .)
+    }               reduce using rule 11 (elif -> none .)
+
+
+state 28
+
+    (14) while -> WHILE ( . expression ) { statement }
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 48
+    boolval                        shift and go to state 35
+
+state 29
+
+    (25) print -> PRINT expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    ;               reduce using rule 25 (print -> PRINT expression .)
+    +               shift and go to state 49
+    -               shift and go to state 50
+    *               shift and go to state 51
+    /               shift and go to state 52
+    ^               shift and go to state 53
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    EQC             shift and go to state 58
+    NOTEQC          shift and go to state 59
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+
+state 30
+
+    (39) expression -> - . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 62
+    boolval                        shift and go to state 35
+
+state 31
+
+    (40) expression -> ( . expression )
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 63
+    boolval                        shift and go to state 35
+
+state 32
+
+    (41) expression -> INTV .
+
+    +               reduce using rule 41 (expression -> INTV .)
+    -               reduce using rule 41 (expression -> INTV .)
+    *               reduce using rule 41 (expression -> INTV .)
+    /               reduce using rule 41 (expression -> INTV .)
+    ^               reduce using rule 41 (expression -> INTV .)
+    >               reduce using rule 41 (expression -> INTV .)
+    <               reduce using rule 41 (expression -> INTV .)
+    AND             reduce using rule 41 (expression -> INTV .)
+    OR              reduce using rule 41 (expression -> INTV .)
+    EQC             reduce using rule 41 (expression -> INTV .)
+    NOTEQC          reduce using rule 41 (expression -> INTV .)
+    BIGGEREQ        reduce using rule 41 (expression -> INTV .)
+    SMALLEREQ       reduce using rule 41 (expression -> INTV .)
+    ;               reduce using rule 41 (expression -> INTV .)
+    )               reduce using rule 41 (expression -> INTV .)
+
+
+state 33
+
+    (42) expression -> FLOATV .
+
+    +               reduce using rule 42 (expression -> FLOATV .)
+    -               reduce using rule 42 (expression -> FLOATV .)
+    *               reduce using rule 42 (expression -> FLOATV .)
+    /               reduce using rule 42 (expression -> FLOATV .)
+    ^               reduce using rule 42 (expression -> FLOATV .)
+    >               reduce using rule 42 (expression -> FLOATV .)
+    <               reduce using rule 42 (expression -> FLOATV .)
+    AND             reduce using rule 42 (expression -> FLOATV .)
+    OR              reduce using rule 42 (expression -> FLOATV .)
+    EQC             reduce using rule 42 (expression -> FLOATV .)
+    NOTEQC          reduce using rule 42 (expression -> FLOATV .)
+    BIGGEREQ        reduce using rule 42 (expression -> FLOATV .)
+    SMALLEREQ       reduce using rule 42 (expression -> FLOATV .)
+    ;               reduce using rule 42 (expression -> FLOATV .)
+    )               reduce using rule 42 (expression -> FLOATV .)
+
+
+state 34
+
+    (43) expression -> STRINGV .
+
+    +               reduce using rule 43 (expression -> STRINGV .)
+    -               reduce using rule 43 (expression -> STRINGV .)
+    *               reduce using rule 43 (expression -> STRINGV .)
+    /               reduce using rule 43 (expression -> STRINGV .)
+    ^               reduce using rule 43 (expression -> STRINGV .)
+    >               reduce using rule 43 (expression -> STRINGV .)
+    <               reduce using rule 43 (expression -> STRINGV .)
+    AND             reduce using rule 43 (expression -> STRINGV .)
+    OR              reduce using rule 43 (expression -> STRINGV .)
+    EQC             reduce using rule 43 (expression -> STRINGV .)
+    NOTEQC          reduce using rule 43 (expression -> STRINGV .)
+    BIGGEREQ        reduce using rule 43 (expression -> STRINGV .)
+    SMALLEREQ       reduce using rule 43 (expression -> STRINGV .)
+    ;               reduce using rule 43 (expression -> STRINGV .)
+    )               reduce using rule 43 (expression -> STRINGV .)
+
+
+state 35
+
+    (44) expression -> boolval .
+
+    +               reduce using rule 44 (expression -> boolval .)
+    -               reduce using rule 44 (expression -> boolval .)
+    *               reduce using rule 44 (expression -> boolval .)
+    /               reduce using rule 44 (expression -> boolval .)
+    ^               reduce using rule 44 (expression -> boolval .)
+    >               reduce using rule 44 (expression -> boolval .)
+    <               reduce using rule 44 (expression -> boolval .)
+    AND             reduce using rule 44 (expression -> boolval .)
+    OR              reduce using rule 44 (expression -> boolval .)
+    EQC             reduce using rule 44 (expression -> boolval .)
+    NOTEQC          reduce using rule 44 (expression -> boolval .)
+    BIGGEREQ        reduce using rule 44 (expression -> boolval .)
+    SMALLEREQ       reduce using rule 44 (expression -> boolval .)
+    ;               reduce using rule 44 (expression -> boolval .)
+    )               reduce using rule 44 (expression -> boolval .)
+
+
+state 36
+
+    (47) expression -> ID .
+
+    +               reduce using rule 47 (expression -> ID .)
+    -               reduce using rule 47 (expression -> ID .)
+    *               reduce using rule 47 (expression -> ID .)
+    /               reduce using rule 47 (expression -> ID .)
+    ^               reduce using rule 47 (expression -> ID .)
+    >               reduce using rule 47 (expression -> ID .)
+    <               reduce using rule 47 (expression -> ID .)
+    AND             reduce using rule 47 (expression -> ID .)
+    OR              reduce using rule 47 (expression -> ID .)
+    EQC             reduce using rule 47 (expression -> ID .)
+    NOTEQC          reduce using rule 47 (expression -> ID .)
+    BIGGEREQ        reduce using rule 47 (expression -> ID .)
+    SMALLEREQ       reduce using rule 47 (expression -> ID .)
+    ;               reduce using rule 47 (expression -> ID .)
+    )               reduce using rule 47 (expression -> ID .)
+
+
+state 37
+
+    (45) boolval -> TRUE .
+
+    +               reduce using rule 45 (boolval -> TRUE .)
+    -               reduce using rule 45 (boolval -> TRUE .)
+    *               reduce using rule 45 (boolval -> TRUE .)
+    /               reduce using rule 45 (boolval -> TRUE .)
+    ^               reduce using rule 45 (boolval -> TRUE .)
+    >               reduce using rule 45 (boolval -> TRUE .)
+    <               reduce using rule 45 (boolval -> TRUE .)
+    AND             reduce using rule 45 (boolval -> TRUE .)
+    OR              reduce using rule 45 (boolval -> TRUE .)
+    EQC             reduce using rule 45 (boolval -> TRUE .)
+    NOTEQC          reduce using rule 45 (boolval -> TRUE .)
+    BIGGEREQ        reduce using rule 45 (boolval -> TRUE .)
+    SMALLEREQ       reduce using rule 45 (boolval -> TRUE .)
+    ;               reduce using rule 45 (boolval -> TRUE .)
+    )               reduce using rule 45 (boolval -> TRUE .)
+
+
+state 38
+
+    (46) boolval -> FALSE .
+
+    +               reduce using rule 46 (boolval -> FALSE .)
+    -               reduce using rule 46 (boolval -> FALSE .)
+    *               reduce using rule 46 (boolval -> FALSE .)
+    /               reduce using rule 46 (boolval -> FALSE .)
+    ^               reduce using rule 46 (boolval -> FALSE .)
+    >               reduce using rule 46 (boolval -> FALSE .)
+    <               reduce using rule 46 (boolval -> FALSE .)
+    AND             reduce using rule 46 (boolval -> FALSE .)
+    OR              reduce using rule 46 (boolval -> FALSE .)
+    EQC             reduce using rule 46 (boolval -> FALSE .)
+    NOTEQC          reduce using rule 46 (boolval -> FALSE .)
+    BIGGEREQ        reduce using rule 46 (boolval -> FALSE .)
+    SMALLEREQ       reduce using rule 46 (boolval -> FALSE .)
+    ;               reduce using rule 46 (boolval -> FALSE .)
+    )               reduce using rule 46 (boolval -> FALSE .)
+
+
+state 39
+
+    (9) if -> IF ( . expression ) { statement }
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 64
+    boolval                        shift and go to state 35
+
+state 40
+
+    (22) declaration -> type ID .
+    (23) declarationAssign -> type ID . = expression
+
+    ;               reduce using rule 22 (declaration -> type ID .)
+    =               shift and go to state 65
+
+
+state 41
+
+    (24) declareAssign -> ID = . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 66
+    boolval                        shift and go to state 35
+
+state 42
+
+    (4) statement -> declare ; statement .
+
+    $end            reduce using rule 4 (statement -> declare ; statement .)
+    }               reduce using rule 4 (statement -> declare ; statement .)
+
+
+state 43
+
+    (5) statement -> print ; statement .
+
+    $end            reduce using rule 5 (statement -> print ; statement .)
+    }               reduce using rule 5 (statement -> print ; statement .)
+
+
+state 44
+
+    (8) conditional -> if elif else .
+
+    WHILE           reduce using rule 8 (conditional -> if elif else .)
+    PRINT           reduce using rule 8 (conditional -> if elif else .)
+    IF              reduce using rule 8 (conditional -> if elif else .)
+    ID              reduce using rule 8 (conditional -> if elif else .)
+    INT             reduce using rule 8 (conditional -> if elif else .)
+    FLOAT           reduce using rule 8 (conditional -> if elif else .)
+    STRING          reduce using rule 8 (conditional -> if elif else .)
+    BOOLEAN         reduce using rule 8 (conditional -> if elif else .)
+    $end            reduce using rule 8 (conditional -> if elif else .)
+    }               reduce using rule 8 (conditional -> if elif else .)
+
+
+state 45
+
+    (12) else -> ELSE . { statement }
+
+    {               shift and go to state 67
+
+
+state 46
+
+    (13) else -> none .
+
+    WHILE           reduce using rule 13 (else -> none .)
+    PRINT           reduce using rule 13 (else -> none .)
+    IF              reduce using rule 13 (else -> none .)
+    ID              reduce using rule 13 (else -> none .)
+    INT             reduce using rule 13 (else -> none .)
+    FLOAT           reduce using rule 13 (else -> none .)
+    STRING          reduce using rule 13 (else -> none .)
+    BOOLEAN         reduce using rule 13 (else -> none .)
+    $end            reduce using rule 13 (else -> none .)
+    }               reduce using rule 13 (else -> none .)
+
+
+state 47
+
+    (10) elif -> ELIF ( . expression ) { statement } elif
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 68
+    boolval                        shift and go to state 35
+
+state 48
+
+    (14) while -> WHILE ( expression . ) { statement }
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    )               shift and go to state 69
+    +               shift and go to state 49
+    -               shift and go to state 50
+    *               shift and go to state 51
+    /               shift and go to state 52
+    ^               shift and go to state 53
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    EQC             shift and go to state 58
+    NOTEQC          shift and go to state 59
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+
+state 49
+
+    (26) expression -> expression + . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 70
+    boolval                        shift and go to state 35
+
+state 50
+
+    (27) expression -> expression - . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 71
+    boolval                        shift and go to state 35
+
+state 51
+
+    (28) expression -> expression * . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 72
+    boolval                        shift and go to state 35
+
+state 52
+
+    (29) expression -> expression / . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 73
+    boolval                        shift and go to state 35
+
+state 53
+
+    (30) expression -> expression ^ . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 74
+    boolval                        shift and go to state 35
+
+state 54
+
+    (31) expression -> expression > . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 75
+    boolval                        shift and go to state 35
+
+state 55
+
+    (32) expression -> expression < . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 76
+    boolval                        shift and go to state 35
+
+state 56
+
+    (33) expression -> expression AND . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 77
+    boolval                        shift and go to state 35
+
+state 57
+
+    (34) expression -> expression OR . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 78
+    boolval                        shift and go to state 35
+
+state 58
+
+    (35) expression -> expression EQC . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 79
+    boolval                        shift and go to state 35
+
+state 59
+
+    (36) expression -> expression NOTEQC . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 80
+    boolval                        shift and go to state 35
+
+state 60
+
+    (37) expression -> expression BIGGEREQ . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 81
+    boolval                        shift and go to state 35
+
+state 61
+
+    (38) expression -> expression SMALLEREQ . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 82
+    boolval                        shift and go to state 35
+
+state 62
+
+    (39) expression -> - expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    +               reduce using rule 39 (expression -> - expression .)
+    -               reduce using rule 39 (expression -> - expression .)
+    *               reduce using rule 39 (expression -> - expression .)
+    /               reduce using rule 39 (expression -> - expression .)
+    ^               reduce using rule 39 (expression -> - expression .)
+    >               reduce using rule 39 (expression -> - expression .)
+    <               reduce using rule 39 (expression -> - expression .)
+    AND             reduce using rule 39 (expression -> - expression .)
+    OR              reduce using rule 39 (expression -> - expression .)
+    EQC             reduce using rule 39 (expression -> - expression .)
+    NOTEQC          reduce using rule 39 (expression -> - expression .)
+    BIGGEREQ        reduce using rule 39 (expression -> - expression .)
+    SMALLEREQ       reduce using rule 39 (expression -> - expression .)
+    ;               reduce using rule 39 (expression -> - expression .)
+    )               reduce using rule 39 (expression -> - expression .)
+
+  ! +               [ shift and go to state 49 ]
+  ! -               [ shift and go to state 50 ]
+  ! *               [ shift and go to state 51 ]
+  ! /               [ shift and go to state 52 ]
+  ! ^               [ shift and go to state 53 ]
+  ! >               [ shift and go to state 54 ]
+  ! <               [ shift and go to state 55 ]
+  ! AND             [ shift and go to state 56 ]
+  ! OR              [ shift and go to state 57 ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+  ! BIGGEREQ        [ shift and go to state 60 ]
+  ! SMALLEREQ       [ shift and go to state 61 ]
+
+
+state 63
+
+    (40) expression -> ( expression . )
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    )               shift and go to state 83
+    +               shift and go to state 49
+    -               shift and go to state 50
+    *               shift and go to state 51
+    /               shift and go to state 52
+    ^               shift and go to state 53
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    EQC             shift and go to state 58
+    NOTEQC          shift and go to state 59
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+
+state 64
+
+    (9) if -> IF ( expression . ) { statement }
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    )               shift and go to state 84
+    +               shift and go to state 49
+    -               shift and go to state 50
+    *               shift and go to state 51
+    /               shift and go to state 52
+    ^               shift and go to state 53
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    EQC             shift and go to state 58
+    NOTEQC          shift and go to state 59
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+
+state 65
+
+    (23) declarationAssign -> type ID = . expression
+    (26) expression -> . expression + expression
+    (27) expression -> . expression - expression
+    (28) expression -> . expression * expression
+    (29) expression -> . expression / expression
+    (30) expression -> . expression ^ expression
+    (31) expression -> . expression > expression
+    (32) expression -> . expression < expression
+    (33) expression -> . expression AND expression
+    (34) expression -> . expression OR expression
+    (35) expression -> . expression EQC expression
+    (36) expression -> . expression NOTEQC expression
+    (37) expression -> . expression BIGGEREQ expression
+    (38) expression -> . expression SMALLEREQ expression
+    (39) expression -> . - expression
+    (40) expression -> . ( expression )
+    (41) expression -> . INTV
+    (42) expression -> . FLOATV
+    (43) expression -> . STRINGV
+    (44) expression -> . boolval
+    (47) expression -> . ID
+    (45) boolval -> . TRUE
+    (46) boolval -> . FALSE
+
+    -               shift and go to state 30
+    (               shift and go to state 31
+    INTV            shift and go to state 32
+    FLOATV          shift and go to state 33
+    STRINGV         shift and go to state 34
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+
+    expression                     shift and go to state 85
+    boolval                        shift and go to state 35
+
+state 66
+
+    (24) declareAssign -> ID = expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    ;               reduce using rule 24 (declareAssign -> ID = expression .)
+    +               shift and go to state 49
+    -               shift and go to state 50
+    *               shift and go to state 51
+    /               shift and go to state 52
+    ^               shift and go to state 53
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    EQC             shift and go to state 58
+    NOTEQC          shift and go to state 59
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+
+state 67
+
+    (12) else -> ELSE { . statement }
+    (2) statement -> . conditional statement
+    (3) statement -> . while statement
+    (4) statement -> . declare ; statement
+    (5) statement -> . print ; statement
+    (6) statement -> . none
+    (8) conditional -> . if elif else
+    (14) while -> . WHILE ( expression ) { statement }
+    (19) declare -> . declaration
+    (20) declare -> . declarationAssign
+    (21) declare -> . declareAssign
+    (25) print -> . PRINT expression
+    (7) none -> .
+    (9) if -> . IF ( expression ) { statement }
+    (22) declaration -> . type ID
+    (23) declarationAssign -> . type ID = expression
+    (24) declareAssign -> . ID = expression
+    (15) type -> . INT
+    (16) type -> . FLOAT
+    (17) type -> . STRING
+    (18) type -> . BOOLEAN
+
+    WHILE           shift and go to state 9
+    PRINT           shift and go to state 13
+    }               reduce using rule 7 (none -> .)
+    IF              shift and go to state 14
+    ID              shift and go to state 16
+    INT             shift and go to state 17
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    BOOLEAN         shift and go to state 20
+
+    statement                      shift and go to state 86
+    conditional                    shift and go to state 3
+    while                          shift and go to state 4
+    declare                        shift and go to state 5
+    print                          shift and go to state 6
+    none                           shift and go to state 7
+    if                             shift and go to state 8
+    declaration                    shift and go to state 10
+    declarationAssign              shift and go to state 11
+    declareAssign                  shift and go to state 12
+    type                           shift and go to state 15
+
+state 68
+
+    (10) elif -> ELIF ( expression . ) { statement } elif
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    )               shift and go to state 87
+    +               shift and go to state 49
+    -               shift and go to state 50
+    *               shift and go to state 51
+    /               shift and go to state 52
+    ^               shift and go to state 53
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    EQC             shift and go to state 58
+    NOTEQC          shift and go to state 59
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+
+state 69
+
+    (14) while -> WHILE ( expression ) . { statement }
+
+    {               shift and go to state 88
+
+
+state 70
+
+    (26) expression -> expression + expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    +               reduce using rule 26 (expression -> expression + expression .)
+    -               reduce using rule 26 (expression -> expression + expression .)
+    EQC             reduce using rule 26 (expression -> expression + expression .)
+    NOTEQC          reduce using rule 26 (expression -> expression + expression .)
+    ;               reduce using rule 26 (expression -> expression + expression .)
+    )               reduce using rule 26 (expression -> expression + expression .)
+    *               shift and go to state 51
+    /               shift and go to state 52
+    ^               shift and go to state 53
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+  ! *               [ reduce using rule 26 (expression -> expression + expression .) ]
+  ! /               [ reduce using rule 26 (expression -> expression + expression .) ]
+  ! ^               [ reduce using rule 26 (expression -> expression + expression .) ]
+  ! >               [ reduce using rule 26 (expression -> expression + expression .) ]
+  ! <               [ reduce using rule 26 (expression -> expression + expression .) ]
+  ! AND             [ reduce using rule 26 (expression -> expression + expression .) ]
+  ! OR              [ reduce using rule 26 (expression -> expression + expression .) ]
+  ! BIGGEREQ        [ reduce using rule 26 (expression -> expression + expression .) ]
+  ! SMALLEREQ       [ reduce using rule 26 (expression -> expression + expression .) ]
+  ! +               [ shift and go to state 49 ]
+  ! -               [ shift and go to state 50 ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+
+
+state 71
+
+    (27) expression -> expression - expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    +               reduce using rule 27 (expression -> expression - expression .)
+    -               reduce using rule 27 (expression -> expression - expression .)
+    EQC             reduce using rule 27 (expression -> expression - expression .)
+    NOTEQC          reduce using rule 27 (expression -> expression - expression .)
+    ;               reduce using rule 27 (expression -> expression - expression .)
+    )               reduce using rule 27 (expression -> expression - expression .)
+    *               shift and go to state 51
+    /               shift and go to state 52
+    ^               shift and go to state 53
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+  ! *               [ reduce using rule 27 (expression -> expression - expression .) ]
+  ! /               [ reduce using rule 27 (expression -> expression - expression .) ]
+  ! ^               [ reduce using rule 27 (expression -> expression - expression .) ]
+  ! >               [ reduce using rule 27 (expression -> expression - expression .) ]
+  ! <               [ reduce using rule 27 (expression -> expression - expression .) ]
+  ! AND             [ reduce using rule 27 (expression -> expression - expression .) ]
+  ! OR              [ reduce using rule 27 (expression -> expression - expression .) ]
+  ! BIGGEREQ        [ reduce using rule 27 (expression -> expression - expression .) ]
+  ! SMALLEREQ       [ reduce using rule 27 (expression -> expression - expression .) ]
+  ! +               [ shift and go to state 49 ]
+  ! -               [ shift and go to state 50 ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+
+
+state 72
+
+    (28) expression -> expression * expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    +               reduce using rule 28 (expression -> expression * expression .)
+    -               reduce using rule 28 (expression -> expression * expression .)
+    *               reduce using rule 28 (expression -> expression * expression .)
+    /               reduce using rule 28 (expression -> expression * expression .)
+    EQC             reduce using rule 28 (expression -> expression * expression .)
+    NOTEQC          reduce using rule 28 (expression -> expression * expression .)
+    ;               reduce using rule 28 (expression -> expression * expression .)
+    )               reduce using rule 28 (expression -> expression * expression .)
+    ^               shift and go to state 53
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+  ! ^               [ reduce using rule 28 (expression -> expression * expression .) ]
+  ! >               [ reduce using rule 28 (expression -> expression * expression .) ]
+  ! <               [ reduce using rule 28 (expression -> expression * expression .) ]
+  ! AND             [ reduce using rule 28 (expression -> expression * expression .) ]
+  ! OR              [ reduce using rule 28 (expression -> expression * expression .) ]
+  ! BIGGEREQ        [ reduce using rule 28 (expression -> expression * expression .) ]
+  ! SMALLEREQ       [ reduce using rule 28 (expression -> expression * expression .) ]
+  ! +               [ shift and go to state 49 ]
+  ! -               [ shift and go to state 50 ]
+  ! *               [ shift and go to state 51 ]
+  ! /               [ shift and go to state 52 ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+
+
+state 73
+
+    (29) expression -> expression / expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    +               reduce using rule 29 (expression -> expression / expression .)
+    -               reduce using rule 29 (expression -> expression / expression .)
+    *               reduce using rule 29 (expression -> expression / expression .)
+    /               reduce using rule 29 (expression -> expression / expression .)
+    EQC             reduce using rule 29 (expression -> expression / expression .)
+    NOTEQC          reduce using rule 29 (expression -> expression / expression .)
+    ;               reduce using rule 29 (expression -> expression / expression .)
+    )               reduce using rule 29 (expression -> expression / expression .)
+    ^               shift and go to state 53
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+  ! ^               [ reduce using rule 29 (expression -> expression / expression .) ]
+  ! >               [ reduce using rule 29 (expression -> expression / expression .) ]
+  ! <               [ reduce using rule 29 (expression -> expression / expression .) ]
+  ! AND             [ reduce using rule 29 (expression -> expression / expression .) ]
+  ! OR              [ reduce using rule 29 (expression -> expression / expression .) ]
+  ! BIGGEREQ        [ reduce using rule 29 (expression -> expression / expression .) ]
+  ! SMALLEREQ       [ reduce using rule 29 (expression -> expression / expression .) ]
+  ! +               [ shift and go to state 49 ]
+  ! -               [ shift and go to state 50 ]
+  ! *               [ shift and go to state 51 ]
+  ! /               [ shift and go to state 52 ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+
+
+state 74
+
+    (30) expression -> expression ^ expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    +               reduce using rule 30 (expression -> expression ^ expression .)
+    -               reduce using rule 30 (expression -> expression ^ expression .)
+    *               reduce using rule 30 (expression -> expression ^ expression .)
+    /               reduce using rule 30 (expression -> expression ^ expression .)
+    ^               reduce using rule 30 (expression -> expression ^ expression .)
+    EQC             reduce using rule 30 (expression -> expression ^ expression .)
+    NOTEQC          reduce using rule 30 (expression -> expression ^ expression .)
+    ;               reduce using rule 30 (expression -> expression ^ expression .)
+    )               reduce using rule 30 (expression -> expression ^ expression .)
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+  ! >               [ reduce using rule 30 (expression -> expression ^ expression .) ]
+  ! <               [ reduce using rule 30 (expression -> expression ^ expression .) ]
+  ! AND             [ reduce using rule 30 (expression -> expression ^ expression .) ]
+  ! OR              [ reduce using rule 30 (expression -> expression ^ expression .) ]
+  ! BIGGEREQ        [ reduce using rule 30 (expression -> expression ^ expression .) ]
+  ! SMALLEREQ       [ reduce using rule 30 (expression -> expression ^ expression .) ]
+  ! +               [ shift and go to state 49 ]
+  ! -               [ shift and go to state 50 ]
+  ! *               [ shift and go to state 51 ]
+  ! /               [ shift and go to state 52 ]
+  ! ^               [ shift and go to state 53 ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+
+
+state 75
+
+    (31) expression -> expression > expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    +               reduce using rule 31 (expression -> expression > expression .)
+    -               reduce using rule 31 (expression -> expression > expression .)
+    *               reduce using rule 31 (expression -> expression > expression .)
+    /               reduce using rule 31 (expression -> expression > expression .)
+    ^               reduce using rule 31 (expression -> expression > expression .)
+    >               reduce using rule 31 (expression -> expression > expression .)
+    <               reduce using rule 31 (expression -> expression > expression .)
+    AND             reduce using rule 31 (expression -> expression > expression .)
+    OR              reduce using rule 31 (expression -> expression > expression .)
+    EQC             reduce using rule 31 (expression -> expression > expression .)
+    NOTEQC          reduce using rule 31 (expression -> expression > expression .)
+    BIGGEREQ        reduce using rule 31 (expression -> expression > expression .)
+    SMALLEREQ       reduce using rule 31 (expression -> expression > expression .)
+    ;               reduce using rule 31 (expression -> expression > expression .)
+    )               reduce using rule 31 (expression -> expression > expression .)
+
+  ! +               [ shift and go to state 49 ]
+  ! -               [ shift and go to state 50 ]
+  ! *               [ shift and go to state 51 ]
+  ! /               [ shift and go to state 52 ]
+  ! ^               [ shift and go to state 53 ]
+  ! >               [ shift and go to state 54 ]
+  ! <               [ shift and go to state 55 ]
+  ! AND             [ shift and go to state 56 ]
+  ! OR              [ shift and go to state 57 ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+  ! BIGGEREQ        [ shift and go to state 60 ]
+  ! SMALLEREQ       [ shift and go to state 61 ]
+
+
+state 76
+
+    (32) expression -> expression < expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    +               reduce using rule 32 (expression -> expression < expression .)
+    -               reduce using rule 32 (expression -> expression < expression .)
+    *               reduce using rule 32 (expression -> expression < expression .)
+    /               reduce using rule 32 (expression -> expression < expression .)
+    ^               reduce using rule 32 (expression -> expression < expression .)
+    >               reduce using rule 32 (expression -> expression < expression .)
+    <               reduce using rule 32 (expression -> expression < expression .)
+    AND             reduce using rule 32 (expression -> expression < expression .)
+    OR              reduce using rule 32 (expression -> expression < expression .)
+    EQC             reduce using rule 32 (expression -> expression < expression .)
+    NOTEQC          reduce using rule 32 (expression -> expression < expression .)
+    BIGGEREQ        reduce using rule 32 (expression -> expression < expression .)
+    SMALLEREQ       reduce using rule 32 (expression -> expression < expression .)
+    ;               reduce using rule 32 (expression -> expression < expression .)
+    )               reduce using rule 32 (expression -> expression < expression .)
+
+  ! +               [ shift and go to state 49 ]
+  ! -               [ shift and go to state 50 ]
+  ! *               [ shift and go to state 51 ]
+  ! /               [ shift and go to state 52 ]
+  ! ^               [ shift and go to state 53 ]
+  ! >               [ shift and go to state 54 ]
+  ! <               [ shift and go to state 55 ]
+  ! AND             [ shift and go to state 56 ]
+  ! OR              [ shift and go to state 57 ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+  ! BIGGEREQ        [ shift and go to state 60 ]
+  ! SMALLEREQ       [ shift and go to state 61 ]
+
+
+state 77
+
+    (33) expression -> expression AND expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    +               reduce using rule 33 (expression -> expression AND expression .)
+    -               reduce using rule 33 (expression -> expression AND expression .)
+    *               reduce using rule 33 (expression -> expression AND expression .)
+    /               reduce using rule 33 (expression -> expression AND expression .)
+    ^               reduce using rule 33 (expression -> expression AND expression .)
+    AND             reduce using rule 33 (expression -> expression AND expression .)
+    OR              reduce using rule 33 (expression -> expression AND expression .)
+    EQC             reduce using rule 33 (expression -> expression AND expression .)
+    NOTEQC          reduce using rule 33 (expression -> expression AND expression .)
+    ;               reduce using rule 33 (expression -> expression AND expression .)
+    )               reduce using rule 33 (expression -> expression AND expression .)
+    >               shift and go to state 54
+    <               shift and go to state 55
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+  ! >               [ reduce using rule 33 (expression -> expression AND expression .) ]
+  ! <               [ reduce using rule 33 (expression -> expression AND expression .) ]
+  ! BIGGEREQ        [ reduce using rule 33 (expression -> expression AND expression .) ]
+  ! SMALLEREQ       [ reduce using rule 33 (expression -> expression AND expression .) ]
+  ! +               [ shift and go to state 49 ]
+  ! -               [ shift and go to state 50 ]
+  ! *               [ shift and go to state 51 ]
+  ! /               [ shift and go to state 52 ]
+  ! ^               [ shift and go to state 53 ]
+  ! AND             [ shift and go to state 56 ]
+  ! OR              [ shift and go to state 57 ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+
+
+state 78
+
+    (34) expression -> expression OR expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    +               reduce using rule 34 (expression -> expression OR expression .)
+    -               reduce using rule 34 (expression -> expression OR expression .)
+    *               reduce using rule 34 (expression -> expression OR expression .)
+    /               reduce using rule 34 (expression -> expression OR expression .)
+    ^               reduce using rule 34 (expression -> expression OR expression .)
+    AND             reduce using rule 34 (expression -> expression OR expression .)
+    OR              reduce using rule 34 (expression -> expression OR expression .)
+    EQC             reduce using rule 34 (expression -> expression OR expression .)
+    NOTEQC          reduce using rule 34 (expression -> expression OR expression .)
+    ;               reduce using rule 34 (expression -> expression OR expression .)
+    )               reduce using rule 34 (expression -> expression OR expression .)
+    >               shift and go to state 54
+    <               shift and go to state 55
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+  ! >               [ reduce using rule 34 (expression -> expression OR expression .) ]
+  ! <               [ reduce using rule 34 (expression -> expression OR expression .) ]
+  ! BIGGEREQ        [ reduce using rule 34 (expression -> expression OR expression .) ]
+  ! SMALLEREQ       [ reduce using rule 34 (expression -> expression OR expression .) ]
+  ! +               [ shift and go to state 49 ]
+  ! -               [ shift and go to state 50 ]
+  ! *               [ shift and go to state 51 ]
+  ! /               [ shift and go to state 52 ]
+  ! ^               [ shift and go to state 53 ]
+  ! AND             [ shift and go to state 56 ]
+  ! OR              [ shift and go to state 57 ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+
+
+state 79
+
+    (35) expression -> expression EQC expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    EQC             reduce using rule 35 (expression -> expression EQC expression .)
+    NOTEQC          reduce using rule 35 (expression -> expression EQC expression .)
+    ;               reduce using rule 35 (expression -> expression EQC expression .)
+    )               reduce using rule 35 (expression -> expression EQC expression .)
+    +               shift and go to state 49
+    -               shift and go to state 50
+    *               shift and go to state 51
+    /               shift and go to state 52
+    ^               shift and go to state 53
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+  ! +               [ reduce using rule 35 (expression -> expression EQC expression .) ]
+  ! -               [ reduce using rule 35 (expression -> expression EQC expression .) ]
+  ! *               [ reduce using rule 35 (expression -> expression EQC expression .) ]
+  ! /               [ reduce using rule 35 (expression -> expression EQC expression .) ]
+  ! ^               [ reduce using rule 35 (expression -> expression EQC expression .) ]
+  ! >               [ reduce using rule 35 (expression -> expression EQC expression .) ]
+  ! <               [ reduce using rule 35 (expression -> expression EQC expression .) ]
+  ! AND             [ reduce using rule 35 (expression -> expression EQC expression .) ]
+  ! OR              [ reduce using rule 35 (expression -> expression EQC expression .) ]
+  ! BIGGEREQ        [ reduce using rule 35 (expression -> expression EQC expression .) ]
+  ! SMALLEREQ       [ reduce using rule 35 (expression -> expression EQC expression .) ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+
+
+state 80
+
+    (36) expression -> expression NOTEQC expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    EQC             reduce using rule 36 (expression -> expression NOTEQC expression .)
+    NOTEQC          reduce using rule 36 (expression -> expression NOTEQC expression .)
+    ;               reduce using rule 36 (expression -> expression NOTEQC expression .)
+    )               reduce using rule 36 (expression -> expression NOTEQC expression .)
+    +               shift and go to state 49
+    -               shift and go to state 50
+    *               shift and go to state 51
+    /               shift and go to state 52
+    ^               shift and go to state 53
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+  ! +               [ reduce using rule 36 (expression -> expression NOTEQC expression .) ]
+  ! -               [ reduce using rule 36 (expression -> expression NOTEQC expression .) ]
+  ! *               [ reduce using rule 36 (expression -> expression NOTEQC expression .) ]
+  ! /               [ reduce using rule 36 (expression -> expression NOTEQC expression .) ]
+  ! ^               [ reduce using rule 36 (expression -> expression NOTEQC expression .) ]
+  ! >               [ reduce using rule 36 (expression -> expression NOTEQC expression .) ]
+  ! <               [ reduce using rule 36 (expression -> expression NOTEQC expression .) ]
+  ! AND             [ reduce using rule 36 (expression -> expression NOTEQC expression .) ]
+  ! OR              [ reduce using rule 36 (expression -> expression NOTEQC expression .) ]
+  ! BIGGEREQ        [ reduce using rule 36 (expression -> expression NOTEQC expression .) ]
+  ! SMALLEREQ       [ reduce using rule 36 (expression -> expression NOTEQC expression .) ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+
+
+state 81
+
+    (37) expression -> expression BIGGEREQ expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    +               reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    -               reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    *               reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    /               reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    ^               reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    >               reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    <               reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    AND             reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    OR              reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    EQC             reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    NOTEQC          reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    BIGGEREQ        reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    SMALLEREQ       reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    ;               reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+    )               reduce using rule 37 (expression -> expression BIGGEREQ expression .)
+
+  ! +               [ shift and go to state 49 ]
+  ! -               [ shift and go to state 50 ]
+  ! *               [ shift and go to state 51 ]
+  ! /               [ shift and go to state 52 ]
+  ! ^               [ shift and go to state 53 ]
+  ! >               [ shift and go to state 54 ]
+  ! <               [ shift and go to state 55 ]
+  ! AND             [ shift and go to state 56 ]
+  ! OR              [ shift and go to state 57 ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+  ! BIGGEREQ        [ shift and go to state 60 ]
+  ! SMALLEREQ       [ shift and go to state 61 ]
+
+
+state 82
+
+    (38) expression -> expression SMALLEREQ expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    +               reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    -               reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    *               reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    /               reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    ^               reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    >               reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    <               reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    AND             reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    OR              reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    EQC             reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    NOTEQC          reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    BIGGEREQ        reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    SMALLEREQ       reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    ;               reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+    )               reduce using rule 38 (expression -> expression SMALLEREQ expression .)
+
+  ! +               [ shift and go to state 49 ]
+  ! -               [ shift and go to state 50 ]
+  ! *               [ shift and go to state 51 ]
+  ! /               [ shift and go to state 52 ]
+  ! ^               [ shift and go to state 53 ]
+  ! >               [ shift and go to state 54 ]
+  ! <               [ shift and go to state 55 ]
+  ! AND             [ shift and go to state 56 ]
+  ! OR              [ shift and go to state 57 ]
+  ! EQC             [ shift and go to state 58 ]
+  ! NOTEQC          [ shift and go to state 59 ]
+  ! BIGGEREQ        [ shift and go to state 60 ]
+  ! SMALLEREQ       [ shift and go to state 61 ]
+
+
+state 83
+
+    (40) expression -> ( expression ) .
+
+    +               reduce using rule 40 (expression -> ( expression ) .)
+    -               reduce using rule 40 (expression -> ( expression ) .)
+    *               reduce using rule 40 (expression -> ( expression ) .)
+    /               reduce using rule 40 (expression -> ( expression ) .)
+    ^               reduce using rule 40 (expression -> ( expression ) .)
+    >               reduce using rule 40 (expression -> ( expression ) .)
+    <               reduce using rule 40 (expression -> ( expression ) .)
+    AND             reduce using rule 40 (expression -> ( expression ) .)
+    OR              reduce using rule 40 (expression -> ( expression ) .)
+    EQC             reduce using rule 40 (expression -> ( expression ) .)
+    NOTEQC          reduce using rule 40 (expression -> ( expression ) .)
+    BIGGEREQ        reduce using rule 40 (expression -> ( expression ) .)
+    SMALLEREQ       reduce using rule 40 (expression -> ( expression ) .)
+    ;               reduce using rule 40 (expression -> ( expression ) .)
+    )               reduce using rule 40 (expression -> ( expression ) .)
+
+
+state 84
+
+    (9) if -> IF ( expression ) . { statement }
+
+    {               shift and go to state 89
+
+
+state 85
+
+    (23) declarationAssign -> type ID = expression .
+    (26) expression -> expression . + expression
+    (27) expression -> expression . - expression
+    (28) expression -> expression . * expression
+    (29) expression -> expression . / expression
+    (30) expression -> expression . ^ expression
+    (31) expression -> expression . > expression
+    (32) expression -> expression . < expression
+    (33) expression -> expression . AND expression
+    (34) expression -> expression . OR expression
+    (35) expression -> expression . EQC expression
+    (36) expression -> expression . NOTEQC expression
+    (37) expression -> expression . BIGGEREQ expression
+    (38) expression -> expression . SMALLEREQ expression
+
+    ;               reduce using rule 23 (declarationAssign -> type ID = expression .)
+    +               shift and go to state 49
+    -               shift and go to state 50
+    *               shift and go to state 51
+    /               shift and go to state 52
+    ^               shift and go to state 53
+    >               shift and go to state 54
+    <               shift and go to state 55
+    AND             shift and go to state 56
+    OR              shift and go to state 57
+    EQC             shift and go to state 58
+    NOTEQC          shift and go to state 59
+    BIGGEREQ        shift and go to state 60
+    SMALLEREQ       shift and go to state 61
+
+
+state 86
+
+    (12) else -> ELSE { statement . }
+
+    }               shift and go to state 90
+
+
+state 87
+
+    (10) elif -> ELIF ( expression ) . { statement } elif
+
+    {               shift and go to state 91
+
+
+state 88
+
+    (14) while -> WHILE ( expression ) { . statement }
+    (2) statement -> . conditional statement
+    (3) statement -> . while statement
+    (4) statement -> . declare ; statement
+    (5) statement -> . print ; statement
+    (6) statement -> . none
+    (8) conditional -> . if elif else
+    (14) while -> . WHILE ( expression ) { statement }
+    (19) declare -> . declaration
+    (20) declare -> . declarationAssign
+    (21) declare -> . declareAssign
+    (25) print -> . PRINT expression
+    (7) none -> .
+    (9) if -> . IF ( expression ) { statement }
+    (22) declaration -> . type ID
+    (23) declarationAssign -> . type ID = expression
+    (24) declareAssign -> . ID = expression
+    (15) type -> . INT
+    (16) type -> . FLOAT
+    (17) type -> . STRING
+    (18) type -> . BOOLEAN
+
+    WHILE           shift and go to state 9
+    PRINT           shift and go to state 13
+    }               reduce using rule 7 (none -> .)
+    IF              shift and go to state 14
+    ID              shift and go to state 16
+    INT             shift and go to state 17
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    BOOLEAN         shift and go to state 20
+
+    statement                      shift and go to state 92
+    conditional                    shift and go to state 3
+    while                          shift and go to state 4
+    declare                        shift and go to state 5
+    print                          shift and go to state 6
+    none                           shift and go to state 7
+    if                             shift and go to state 8
+    declaration                    shift and go to state 10
+    declarationAssign              shift and go to state 11
+    declareAssign                  shift and go to state 12
+    type                           shift and go to state 15
+
+state 89
+
+    (9) if -> IF ( expression ) { . statement }
+    (2) statement -> . conditional statement
+    (3) statement -> . while statement
+    (4) statement -> . declare ; statement
+    (5) statement -> . print ; statement
+    (6) statement -> . none
+    (8) conditional -> . if elif else
+    (14) while -> . WHILE ( expression ) { statement }
+    (19) declare -> . declaration
+    (20) declare -> . declarationAssign
+    (21) declare -> . declareAssign
+    (25) print -> . PRINT expression
+    (7) none -> .
+    (9) if -> . IF ( expression ) { statement }
+    (22) declaration -> . type ID
+    (23) declarationAssign -> . type ID = expression
+    (24) declareAssign -> . ID = expression
+    (15) type -> . INT
+    (16) type -> . FLOAT
+    (17) type -> . STRING
+    (18) type -> . BOOLEAN
+
+    WHILE           shift and go to state 9
+    PRINT           shift and go to state 13
+    }               reduce using rule 7 (none -> .)
+    IF              shift and go to state 14
+    ID              shift and go to state 16
+    INT             shift and go to state 17
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    BOOLEAN         shift and go to state 20
+
+    statement                      shift and go to state 93
+    conditional                    shift and go to state 3
+    while                          shift and go to state 4
+    declare                        shift and go to state 5
+    print                          shift and go to state 6
+    none                           shift and go to state 7
+    if                             shift and go to state 8
+    declaration                    shift and go to state 10
+    declarationAssign              shift and go to state 11
+    declareAssign                  shift and go to state 12
+    type                           shift and go to state 15
+
+state 90
+
+    (12) else -> ELSE { statement } .
+
+    WHILE           reduce using rule 12 (else -> ELSE { statement } .)
+    PRINT           reduce using rule 12 (else -> ELSE { statement } .)
+    IF              reduce using rule 12 (else -> ELSE { statement } .)
+    ID              reduce using rule 12 (else -> ELSE { statement } .)
+    INT             reduce using rule 12 (else -> ELSE { statement } .)
+    FLOAT           reduce using rule 12 (else -> ELSE { statement } .)
+    STRING          reduce using rule 12 (else -> ELSE { statement } .)
+    BOOLEAN         reduce using rule 12 (else -> ELSE { statement } .)
+    $end            reduce using rule 12 (else -> ELSE { statement } .)
+    }               reduce using rule 12 (else -> ELSE { statement } .)
+
+
+state 91
+
+    (10) elif -> ELIF ( expression ) { . statement } elif
+    (2) statement -> . conditional statement
+    (3) statement -> . while statement
+    (4) statement -> . declare ; statement
+    (5) statement -> . print ; statement
+    (6) statement -> . none
+    (8) conditional -> . if elif else
+    (14) while -> . WHILE ( expression ) { statement }
+    (19) declare -> . declaration
+    (20) declare -> . declarationAssign
+    (21) declare -> . declareAssign
+    (25) print -> . PRINT expression
+    (7) none -> .
+    (9) if -> . IF ( expression ) { statement }
+    (22) declaration -> . type ID
+    (23) declarationAssign -> . type ID = expression
+    (24) declareAssign -> . ID = expression
+    (15) type -> . INT
+    (16) type -> . FLOAT
+    (17) type -> . STRING
+    (18) type -> . BOOLEAN
+
+    WHILE           shift and go to state 9
+    PRINT           shift and go to state 13
+    }               reduce using rule 7 (none -> .)
+    IF              shift and go to state 14
+    ID              shift and go to state 16
+    INT             shift and go to state 17
+    FLOAT           shift and go to state 18
+    STRING          shift and go to state 19
+    BOOLEAN         shift and go to state 20
+
+    statement                      shift and go to state 94
+    conditional                    shift and go to state 3
+    while                          shift and go to state 4
+    declare                        shift and go to state 5
+    print                          shift and go to state 6
+    none                           shift and go to state 7
+    if                             shift and go to state 8
+    declaration                    shift and go to state 10
+    declarationAssign              shift and go to state 11
+    declareAssign                  shift and go to state 12
+    type                           shift and go to state 15
+
+state 92
+
+    (14) while -> WHILE ( expression ) { statement . }
+
+    }               shift and go to state 95
+
+
+state 93
+
+    (9) if -> IF ( expression ) { statement . }
+
+    }               shift and go to state 96
+
+
+state 94
+
+    (10) elif -> ELIF ( expression ) { statement . } elif
+
+    }               shift and go to state 97
+
+
+state 95
+
+    (14) while -> WHILE ( expression ) { statement } .
+
+    WHILE           reduce using rule 14 (while -> WHILE ( expression ) { statement } .)
+    PRINT           reduce using rule 14 (while -> WHILE ( expression ) { statement } .)
+    IF              reduce using rule 14 (while -> WHILE ( expression ) { statement } .)
+    ID              reduce using rule 14 (while -> WHILE ( expression ) { statement } .)
+    INT             reduce using rule 14 (while -> WHILE ( expression ) { statement } .)
+    FLOAT           reduce using rule 14 (while -> WHILE ( expression ) { statement } .)
+    STRING          reduce using rule 14 (while -> WHILE ( expression ) { statement } .)
+    BOOLEAN         reduce using rule 14 (while -> WHILE ( expression ) { statement } .)
+    $end            reduce using rule 14 (while -> WHILE ( expression ) { statement } .)
+    }               reduce using rule 14 (while -> WHILE ( expression ) { statement } .)
+
+
+state 96
+
+    (9) if -> IF ( expression ) { statement } .
+
+    ELIF            reduce using rule 9 (if -> IF ( expression ) { statement } .)
+    ELSE            reduce using rule 9 (if -> IF ( expression ) { statement } .)
+    WHILE           reduce using rule 9 (if -> IF ( expression ) { statement } .)
+    PRINT           reduce using rule 9 (if -> IF ( expression ) { statement } .)
+    IF              reduce using rule 9 (if -> IF ( expression ) { statement } .)
+    ID              reduce using rule 9 (if -> IF ( expression ) { statement } .)
+    INT             reduce using rule 9 (if -> IF ( expression ) { statement } .)
+    FLOAT           reduce using rule 9 (if -> IF ( expression ) { statement } .)
+    STRING          reduce using rule 9 (if -> IF ( expression ) { statement } .)
+    BOOLEAN         reduce using rule 9 (if -> IF ( expression ) { statement } .)
+    $end            reduce using rule 9 (if -> IF ( expression ) { statement } .)
+    }               reduce using rule 9 (if -> IF ( expression ) { statement } .)
+
+
+state 97
+
+    (10) elif -> ELIF ( expression ) { statement } . elif
+    (10) elif -> . ELIF ( expression ) { statement } elif
+    (11) elif -> . none
+    (7) none -> .
+
+    ELIF            shift and go to state 26
+    ELSE            reduce using rule 7 (none -> .)
+    WHILE           reduce using rule 7 (none -> .)
+    PRINT           reduce using rule 7 (none -> .)
+    IF              reduce using rule 7 (none -> .)
+    ID              reduce using rule 7 (none -> .)
+    INT             reduce using rule 7 (none -> .)
+    FLOAT           reduce using rule 7 (none -> .)
+    STRING          reduce using rule 7 (none -> .)
+    BOOLEAN         reduce using rule 7 (none -> .)
+    $end            reduce using rule 7 (none -> .)
+    }               reduce using rule 7 (none -> .)
+
+    elif                           shift and go to state 98
+    none                           shift and go to state 27
+
+state 98
+
+    (10) elif -> ELIF ( expression ) { statement } elif .
+
+    ELSE            reduce using rule 10 (elif -> ELIF ( expression ) { statement } elif .)
+    WHILE           reduce using rule 10 (elif -> ELIF ( expression ) { statement } elif .)
+    PRINT           reduce using rule 10 (elif -> ELIF ( expression ) { statement } elif .)
+    IF              reduce using rule 10 (elif -> ELIF ( expression ) { statement } elif .)
+    ID              reduce using rule 10 (elif -> ELIF ( expression ) { statement } elif .)
+    INT             reduce using rule 10 (elif -> ELIF ( expression ) { statement } elif .)
+    FLOAT           reduce using rule 10 (elif -> ELIF ( expression ) { statement } elif .)
+    STRING          reduce using rule 10 (elif -> ELIF ( expression ) { statement } elif .)
+    BOOLEAN         reduce using rule 10 (elif -> ELIF ( expression ) { statement } elif .)
+    $end            reduce using rule 10 (elif -> ELIF ( expression ) { statement } elif .)
+    }               reduce using rule 10 (elif -> ELIF ( expression ) { statement } elif .)
+

@@ -1,138 +1,472 @@
-import ply.yacc as yacc
 import ply.lex as lex
+import ply.yacc as yacc
 
-literals = ['=', '+', '-', '*', '/', '(', ')']
-reserved = { 
-    'int' : 'INTDEC',
-    'float' : 'FLOATDEC',
-    'print' : 'PRINT'
- }
+literals = ['(', ')', '{', '}', '=', '+', '-', '*', '/', '^', '<', '>', ';']
+reserved = {
+    'float': 'FLOAT',
+    'string': 'STRING',
+    'boolean': 'BOOLEAN',
+    'true': 'TRUE',
+    'false': 'FALSE',
+    'and': 'AND',
+    'or': 'OR',
+    'int': 'INT',
+    'if': 'IF',
+    'elif': 'ELIF',
+    'else': 'ELSE',
+    'while': 'WHILE',
+    'print': 'PRINT'
+}
+tokens = ['FLOATV',
+          'INTV',
+          'EQC',
+          'NOTEQC',
+          'BIGGEREQ',
+          'SMALLEREQ',
+          'STRINGV',
+          'ID'] + list(reserved.values())
 
-tokens = [
-    'INUMBER', 'FNUMBER', 'NAME'
-] + list(reserved.values())
+t_EQC = r'=='
+t_NOTEQC = r'!='
+t_BIGGEREQ = r'>='
+t_SMALLEREQ = r'<='
 
-# Tokens
-def t_NAME(t):
-    r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = reserved.get(t.value,'NAME')    # Check for reserved words
-    return t
 
-def t_FNUMBER(t):
+def t_FLOATV(x):
     r'\d+\.\d+'
-    t.value = float(t.value)
-    return t
+    x.value = float(x.value)
+    return x
 
-def t_INUMBER(t):
+
+def t_INTV(x):
     r'\d+'
-    t.value = int(t.value)
-    return t
+    x.value = int(x.value)
+    return x
 
-t_ignore = " \t"
 
-def t_newline(t):
+def t_STRING(x):
+    r'".*"'
+    x.value = x.value.replace("\"", "")
+    x.type = reserved.get(x.value, 'STRINGV')
+    return x
+
+
+def t_ID(x):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    x.type = reserved.get(x.value, 'ID')
+    return x
+
+
+def t_newline(x):
     r'\n+'
-    t.lexer.lineno += t.value.count("\n")
+    x.lexer.lineno += len(x.value)
 
-def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
-    t.lexer.skip(1)
 
-# Build the lexer
-lexer = lex.lex()
+t_ignore = ' \t'
 
-# Parsing rules
+
+def t_error(x):
+    print("Error, caracter ilegal: '%s'" % x.value[0])
+    x.lexer.skip(1)
+
+
+lex.lex()
 precedence = (
+    ('right', '='),
+    ('left', 'EQC', 'NOTEQC'),
     ('left', '+', '-'),
     ('left', '*', '/'),
-    ('right', 'UMINUS'),
+    ('left', '^'),
+    ('left', 'AND', 'OR'),
+    ('nonassoc', '<', '>', 'BIGGEREQ', 'SMALLEREQ'),
+    ('right', 'UMINUS')
 )
-
-# dictionary of names
 names = {}
-abstractTree = []
+prog = {}
 
-def p_statement_declare_int(p):
-    '''statement : INTDEC NAME is_assing
-    '''
-    if type(p[3]) == 'float':
-        print('No puedes asignar flotantes a enteros')
+
+def p_start(y):
+    '''prog : statement'''
+    global prog
+    prog = y[1]
+
+
+def p_statement(y):
+    '''statement : conditional statement
+                 | while statement
+                 | declare ';' statement
+                 | print ';' statement
+                 | none'''
+    if len(y) > 2:
+        if y[2] == ';':
+            y[2] = y[3]
+        y[0] = (y[1],) + y[2]
     else:
-        names[p[2]] = { "type": "INT", "value": p[3]}
+        y[0] = ()
 
-def p_is_assing(p):
-    '''is_assing : "=" expression 
-                | '''
-    p[0] = 0
-    if len(p) > 2:
-        p[0] = p[2]
 
-def p_statement_declare_float(p):
-    'statement : FLOATDEC NAME is_assing'
-    names[p[2]] = { "type": "FLOAT", "value":p[3]}
+def p_none(y):
+    'none :'
+    pass
 
-def p_statement_print(p):
-    '''statement : PRINT '(' expression ')' '''
-    print(p[3])
 
-def p_statement_assign(p):
-    'statement : NAME "=" expression'
-    if p[1] not in names:
-        print ( "You must declare a variable before using it")
-    names[p[1]]["value"] = p[3]
+def p_conditional(y):
+    '''conditional : if elif else'''
+    y[0] = ('conditional', y[1], y[2], y[3])
 
-def p_statement_expr(p):
-    'statement : expression'
-    # print(p[1])
 
-def p_expression_binop(p):
+def p_if(y):
+    '''if : IF '(' expression ')' '{' statement '}' '''
+    y[0] = ('if', y[3], y[6])
+
+
+def p_elif(y):
+    '''elif : ELIF '(' expression ')' '{' statement '}' elif
+                 | none'''
+    if len(y) > 2:
+        y[0] = (('elif', y[3], y[6]),) + y[8]
+    else:
+        y[0] = ()
+
+
+def p_else(y):
+    '''else : ELSE '{' statement '}'
+            | none'''
+    if len(y) > 2:
+        y[0] = ('else', y[3])
+
+
+def p_while(y):
+    '''while : WHILE '(' expression ')' '{' statement '}'
+            '''
+    if y[1] == "while":
+        y[0] = ('while', y[3], y[6])
+    else:
+        y[0] = ('do-while', y[7], y[3])
+
+def p_type(y):
+    '''type : INT
+            | FLOAT
+            | STRING
+            | BOOLEAN'''
+    y[0] = y[1]
+
+
+def p_declare(y):
+    '''declare : declaration
+               | declarationAssign
+               | declareAssign'''
+    y[0] = y[1]
+
+
+def p_declaration(y):
+    '''declaration : type ID'''
+    y[0] = ('declare', y[1], y[2])
+
+
+def p_declarationAssign(y):
+    '''declarationAssign : type ID '=' expression'''
+    y[0] = ('declareAssign', y[1], y[2], y[4])
+
+
+def p_declareAssign(y):
+    '''declareAssign : ID '=' expression'''
+    y[0] = ('assign', y[1], y[3])
+    y[0] = ('assign', y[1], y[3])
+
+
+def p_print(y):
+    'print : PRINT expression'
+    y[0] = ('print', y[2])
+
+
+def p_expression_operation(y):
     '''expression : expression '+' expression
                   | expression '-' expression
                   | expression '*' expression
-                  | expression '/' expression'''
-    if p[2] == '+':
-        p[0] = p[1] + p[3]
-    elif p[2] == '-':
-        p[0] = p[1] - p[3]
+                  | expression '/' expression
+                  | expression '^' expression
+                  | expression '>' expression
+                  | expression '<' expression
+                  | expression AND expression
+                  | expression OR expression
+                  | expression EQC expression
+                  | expression NOTEQC expression
+                  | expression BIGGEREQ expression
+                  | expression SMALLEREQ expression'''
+    y[0] = ('operation', y[1], y[2], y[3])
 
-def p_expression_uminus(p):
-    "expression : '-' expression %prec UMINUS"
-    p[0] = -p[2]
 
-def p_expression_group(p):
-    "expression : '(' expression ')'"
-    p[0] = p[2]
+def p_expression_uminus(y):
+    '''expression : '-' expression %prec UMINUS'''
+    y[0] = -y[2]
 
-def p_expression_inumber(p):
-    "expression : INUMBER"
-    p[0] = p[1]
 
-def p_expression_fnumber(p):
-    "expression : FNUMBER"
-    p[0] = p[1]
+def p_expression_group(y):
+    '''expression : '(' expression ')' '''
+    y[0] = y[2]
 
-def p_expression_name(p):
-    "expression : NAME"
-    try:
-        p[0] = names[p[1]]["value"]
-    except LookupError:
-        print("Undefined name '%s'" % p[1])
-        p[0] = 0
 
-def p_error(p):
-    if p:
-        print(p)
-        print("Syntax error at line '%s' character '%s'" % (p.lineno, p.lexpos) )
+def p_expression_number(y):
+    '''expression : INTV
+                  | FLOATV
+                  | STRINGV
+                  | boolval'''
+    y[0] = y[1]
+
+
+def p_boolVal(y):
+    '''boolval : TRUE
+               | FALSE'''
+    if y[1] == "true":
+        y[0] = True
+    elif y[1] == "false":
+        y[0] = False
+
+
+def p_expression_ID(y):
+    "expression : ID"
+    y[0] = y[1]
+
+
+def p_error(y):
+    if y:
+        print("Error de sintaxis: '%s'" % y.value)
     else:
-        print("Syntax error at EOF")
+        print("Error de sintaxis (EOF)")
 
-parser = yacc.yacc()
+yacc.yacc()
+file = open("test.txt", "r")
+s = file.read()
+yacc.parse(s)    
 
-while True:
-    try:
-        s = input('calc > ')
-    except EOFError:
-        break
-    if not s:
-        continue
-    yacc.parse(s)
+code = []
+
+def d_assign(val):
+    res = "" + val[2] + " "
+    if val[1] == 'int' or val[1] == 'float':
+        if type(val[3]) is not tuple:
+            res = res + str(float(val[3]))
+        else:
+            res = res + oper(val[3])
+    else:
+        res = res + str(val[3])
+
+    code.append(res)
+
+
+def declare(val):
+    res = "" + val[1] + " " + val[2]
+    code.append(res)
+
+
+def oper(val):
+    operators = ['>', '>=', '<', '<=', 'and', 'or', '==']
+    res = ""
+    if val[2] in operators:
+        if type(val[1]) is not tuple:
+            res = res + str(val[1])
+        else:
+            res = res + str(oper(val[1]))
+
+        res = res + ' ' + val[2] + ' '
+
+        if type(val[3]) is not tuple:
+            res = res + str(val[3])
+        else:
+            res = res + str(oper(val[3]))
+
+        code.append(res)
+
+    else:
+        num = 0
+        if type(val[1]) is not tuple:
+            if type(val[1]) is int or float:
+                num = val[1]
+
+            res = res + str(val[1])
+        else:
+            num = oper(val[1])
+            res = res + str(num)
+
+        if val[2] == '+':
+            res = res + ' + '
+        elif val[2] == '-':
+            res = res + ' - '
+        elif val[2] == '*':
+            res = res + ' * '
+        elif val[2] == '/':
+            res = res + ' / '
+        elif val[2] == '^':
+            res = res + ' ^ '
+
+        if type(val[3]) is not tuple:
+            if val[2] == '+' and type(val[3]) is not str:
+                if type(num) is not str:
+                    num = num + val[3]
+                else:
+                    num = val[3]
+            elif val[2] == '-' and type(val[3]) is not str:
+                if type(num) is not str:
+                    num = num - val[3]
+                else:
+                    num = val[3]
+            elif val[2] == '*' and type(val[3]) is not str:
+                if type(num) is not str:
+                    num = num * val[3]
+                else:
+                    num = val[3]
+            elif val[2] == '/' and type(val[3]) is not str:
+                if type(num) is not str:
+                    num = num / val[3]
+                else:
+                    num = val[3]
+            elif val[2] == '^' and type(val[3]) is not str:
+                if type(num) is not str:
+                    num = num ** val[3]
+                else:
+                    num = val[3]
+
+            res = res + str(val[3])
+
+        elif type(val[3]) is str:
+            res = res + val[3]
+            code.append(res)
+            return res
+
+        else:
+            operationRes = 0
+            if val[2] == '+':
+                op = oper(val[3])
+                num = num + op
+                operationRes = op
+            elif val[2] == '-':
+                op = oper(val[3])
+                num = num - op
+                operationRes = op
+            elif val[2] == '*':
+                op = oper(val[3])
+                num = num * op
+                operationRes = op
+            elif val[2] == '/':
+                op = oper(val[3])
+                num = num / op
+                operationRes = op
+            elif val[2] == '^':
+                op = oper(val[3])
+                num = num ** op
+                operationRes = op
+
+            res = res + str(operationRes)
+
+        code.append(res)
+        return num
+
+
+def assign(val):
+    res = "" + val[1] + " "
+    if type(val[2]) is not tuple:
+        res = res + str(val[2])
+    else:
+        res = res + str(oper(val[2]))
+    code.append(res)
+
+
+def print_operation(val):
+    res = val[0] + ' ' + val[1]
+    code.append(res)
+
+def if_cond(val):
+    code.append('if')
+    oper(val[1][1])
+    for statement in val[1][2]:
+        if statement[0] == 'declareAssign':
+            d_assign(statement)
+        elif statement[0] == 'declare':
+            declare(statement)
+        elif statement[0] == 'assign':
+            assign(statement)
+        elif statement[0] == 'print':
+            print_operation(statement)
+        elif statement[0] == 'if':
+            if_cond(statement[1])
+        elif statement[0] == 'while':
+            while_loop(statement)
+    code.append('end if')
+    index = 2
+    while index < len(val):
+        if len(val[index]) > 0:
+            if val[index][0][0] == 'elif':
+                code.append('elif')
+                oper(val[index][0][1])
+                for statement in val[index][0][2]:
+                    if statement[0] == 'declareAssign':
+                        d_assign(statement)
+                    elif statement[0] == 'declare':
+                        declare(statement)
+                    elif statement[0] == 'assign':
+                        assign(statement)
+                    elif statement[0] == 'print':
+                        print_operation(statement)
+                    elif statement[0] == 'if':
+                        if_cond(statement[1])
+                    elif statement[0] == 'while':
+                        while_loop(statement)
+                code.append('end elif')
+            else:
+                code.append('else')
+                for statement in val[index][1]:
+                    if statement[0] == 'declareAssign':
+                        d_assign(statement)
+                    elif statement[0] == 'declare':
+                        declare(statement)
+                    elif statement[0] == 'assign':
+                        assign(statement)
+                    elif statement[0] == 'print':
+                        print_operation(statement)
+                    elif statement[0] == 'if':
+                        if_cond(statement[1])
+                    elif statement[0] == 'while':
+                        while_loop(statement)
+                code.append('end else')
+
+        index = index + 1
+
+
+def while_loop(val):
+    code.append('while')
+    oper(val[1])
+    for statement in val[2]:
+        if statement[0] == 'declareAssign':
+            d_assign(statement)
+        elif statement[0] == 'declare':
+            declare(statement)
+        elif statement[0] == 'assign':
+            assign(statement)
+        elif statement[0] == 'print':
+            print_operation(statement)
+        elif statement[0] == 'conditional':
+            if_cond(statement)
+        elif statement[0] == 'while':
+            while_loop(statement)
+    code.append('end while')
+
+for val in prog:
+    print(val)
+    if val[0] == 'declareAssign':
+        d_assign(val)
+    elif val[0] == 'declare':
+        declare(val)
+    elif val[0] == 'assign':
+        assign(val)
+    elif val[0] == 'print':
+        print_operation(val)
+    elif val[0] == 'conditional':
+        if_cond(val)
+    elif val[0] == 'while':
+        while_loop(val)
+
+file = open('result.txt', 'a')
+for val in code:
+    file.write(val + '\n')
+file.close()
